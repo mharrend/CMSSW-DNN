@@ -15,7 +15,6 @@
 #include <vector>
 
 #include "Python.h"
-#include <numpy/arrayobject.h>
 
 #include "DNN/Base/interface/Logger.h"
 
