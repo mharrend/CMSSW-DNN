@@ -18,12 +18,12 @@ config.JobType.sendPythonFolder= True
 
 config.section_("Data")
 config.Data.splitting = 'EventBased'
-config.Data.unitsPerJob = 800
-config.Data.totalUnits = 100
+config.Data.unitsPerJob = 10
+config.Data.totalUnits = 30
 config.Data.publication = False
+config.Data.outputPrimaryDataset = 'testDNNTensorflow'
 config.Data.outputDatasetTag = 'crab_testDNNTensorflow'
 config.Data.inputDBS = 'phys03'
-config.Data.ignoreLocality = True
 
 config.section_("Site")
 config.Site.storageSite = 'T2_DE_DESY'
