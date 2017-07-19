@@ -50,6 +50,8 @@ public:
     ~tfModelUser();
     
 private:
+    // tensorflow graph
+    dnn::tf::Graph m_g;    
     // tensorflow x and y variables
     dnn::tf::Tensor* m_x;
     dnn::tf::Tensor* m_y;
