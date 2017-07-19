@@ -54,10 +54,8 @@ private:
     bool hasContext() const;
     void startContext();
 
-    static size_t nConsumers;
+    extern static size_t nConsumers;
 };
-
-extern size_t PythonInterface::nConsumers = 0;
 
 } // namepace dnn
 
