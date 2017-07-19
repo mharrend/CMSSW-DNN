@@ -54,7 +54,7 @@ private:
     bool hasContext() const;
     void startContext();
 
-    extern static size_t nConsumers;
+    static size_t nConsumers;
 };
 
 } // namepace dnn
