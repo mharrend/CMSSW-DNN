@@ -52,7 +52,7 @@ void tfModelUser::evalModel(std::vector<float> eventVariables, std::vector<float
     // this does not return anything but changes the output tensor(s) in place which is faster
     m_g.eval();
 
-    for (int i = 0; i < m_numberOfOutputNeurons; i++) {
+    for (unsigned int i = 0; i < m_numberOfOutputNeurons; i++) {
     	NNOutput.push_back(m_y->getValue<float>(0, i));
     }
 }
