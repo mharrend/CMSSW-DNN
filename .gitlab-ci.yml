@@ -26,3 +26,4 @@ test:
     - test_tftensor || exit ${?}
     - test_tfgraph
     - test_kitmodel
+    - test_tfModelUser
