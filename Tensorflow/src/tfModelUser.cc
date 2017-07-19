@@ -7,6 +7,12 @@
 
 #include "DNN/Tensorflow/interface/tfModelUser.h"
 
+namespace dnn
+{
+
+namespace tf
+{
+
 tfModelUser::tfModelUser(std::string modelFileLocation, std::vector<std::string> inputNeurons, std::vector<std::string> outputNeurons)
 {
     tfModelUser(modelFileLocation, inputNeurons.size(), outputNeurons.size());
@@ -61,3 +67,6 @@ tfModelUser::~tfModelUser()
 
 }
 
+} // namepace tf
+
+} // namepace dnn

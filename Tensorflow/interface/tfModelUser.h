@@ -16,6 +16,9 @@
  *   Marco A. Harrendorf
  */
 
+#ifndef DNN_TENSORFLOW_MODELUSER_H
+#define DNN_TENSORFLOW_MODELUSER_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -23,6 +26,11 @@
 #include "DNN/Tensorflow/interface/Graph.h"
 #include "DNN/Tensorflow/interface/Tensor.h"
 
+namespace dnn
+{
+
+namespace tf
+{
 
 class tfModelUser
 {
@@ -45,4 +53,10 @@ private:
     // Storing number of output neurons since required during eval step
     unsigned int m_numberOfOutputNeurons;
     
-}
+};
+
+} // namepace tf
+
+} // namepace dnn
+
+#endif
