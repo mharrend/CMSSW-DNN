@@ -53,7 +53,7 @@ void tfModelUser::evalModel(std::vector<float> eventVariables, std::vector<float
     m_g.eval();
 
     for (int i = 0; i < m_numberOfOutputNeurons; i++) {
-    	NNOutput.append(m_y->getValue<float>(0, i));
+    	NNOutput.push_back(m_y->getValue<float>(0, i));
     }
 }
 
