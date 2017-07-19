@@ -29,12 +29,12 @@ std::vector<std::string> readinNumberOfVariables(std::string variableListLocatio
     
     // Reading in variables
     std::string tempVariable;
-    ifstream variableListFile;
+    std::ifstream variableListFile;
     variableListFile.open(variableListLocation);
     if (variableListFile.is_open()) {
         while (!variableListFile.eof()) {
-            getline(infile,tempVariable);
-            variableList.append(tempVariable);
+            getline(variableListFile,tempVariable);
+            variableList.push_back(tempVariable);
         }
     }
     variableListFile.close();
@@ -71,25 +71,25 @@ int main(int argc, char* argv[])
     
     // create vector list containing events 
     std::vector<std::vector<float>> eventList= createVectorOfEventVectors();
-    int sizeOfEventList = eventList.size();
+    unsigned int sizeOfEventList = eventList.size();
     std::cout << "Size of eventList: " << sizeOfEventList << std::endl;
 
     // create vector list containing known output values of events
     std::vector<std::vector<float>> outputValuesList= createVectorOfOutputValues();
-    int sizeOfOutputValuesList = outputValuesList.size();
+    unsigned int sizeOfOutputValuesList = outputValuesList.size();
     std::cout << "Size of outputValuesList: " << sizeOfOutputValuesList << std::endl;
     
     // Evaluate model for events and compare with known output values
     std::vector<float> outputValuesReturnVec;
-    for(int i = 0; i < sizeOfEventList; i++) {
+    for(unsigned int i = 0; i < sizeOfEventList; i++) {
         outputValuesReturnVec.clear();
         modelUser.evalModel(eventList[i], outputValuesReturnVec);
         std::cout << "Output values obtained from model:" << std::endl;
-        for (int j = 0; j < outputLabelList.size(); j++) 
+        for (unsigned int j = 0; j < outputLabelList.size(); j++) 
             std::cout << outputValuesReturnVec[j];
         std::cout << std::endl;
         std::cout << "Known output values for model:" << std::endl;
-        for (int j = 0; j < outputLabelList.size(); j++) 
+        for (unsigned int j = 0; j < outputLabelList.size(); j++) 
             std::cout << outputValuesList[i][j];
         std::cout << std::endl;
     }
