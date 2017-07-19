@@ -32,9 +32,9 @@ tfModelUser::tfModelUser(std::string modelFileLocation, unsigned int numberOfInp
     // prepare input and output tensors
     // input tensor contains only 1 event with n input variables
     dnn::tf::Shape xShape[] = { 1, numberOfInputNeurons };
-    dnn::tf::Tensor* x = g.defineInput(new dnn::tf::Tensor("input:0", 2, xShape));
+    m_x = g.defineInput(new dnn::tf::Tensor("input:0", 2, xShape));
     // output tensor can contain either one or more neurons
-    dnn::tf::Tensor* y = g.defineOutput(new dnn::tf::Tensor("output:0"));
+    m_y = g.defineOutput(new dnn::tf::Tensor("output:0"));
     // save number of output neurons
     m_numberOfOutputNeurons =  numberOfOutputNeurons;
 
@@ -46,14 +46,14 @@ void tfModelUser::evalModel(std::vector<float> eventVariables, std::vector<float
     NNOutput.clear();
 
     // Fill event variables x values
-    x->setVector<float>(1, 0, eventVariables); // axis: 1, axis 0 (= batch dim) value: 0, vector: v
+    m_x->setVector<float>(1, 0, eventVariables); // axis: 1, axis 0 (= batch dim) value: 0, vector: v
 
     // evaluation call
     // this does not return anything but changes the output tensor(s) in place which is faster
     g.eval();
 
     for (int i = 0; i < m_numberOfOutputNeurons; i++) {
-    	NNOutput.append(y->getValue<float>(0, i));
+    	NNOutput.append(m_y->getValue<float>(0, i));
     }
 }
 
@@ -62,8 +62,8 @@ tfModelUser::~tfModelUser()
 {
     // cleanup
     // remove tensors manually (you type 'new', you type 'delete')
-    delete x;
-    delete y;
+    delete m_x;
+    delete m_y;
 
 }
 
