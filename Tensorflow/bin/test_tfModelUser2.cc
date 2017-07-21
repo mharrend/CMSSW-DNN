@@ -1,8 +1,8 @@
 /*
- * Test of loading a tensorflow model produced by NNFlow using the tfModelUser class
+ * Test of loading a binary tensorflow model produced by NNFlow using the tfModelUser class
  *
  * Usage:
- *   > test_tfModelUser
+ *   > test_tfModelUser2
  *
  * Author:
  *   Marco A. Harrendorf
@@ -31,10 +31,7 @@ int main(int argc, char* argv[])
     std::string dataDir = cmsswBase + "/src/DNN/Tensorflow/data";
     std::string modelLoc = dataDir + "/kitmodel";
     std::cout << "Will use the tfModelUser model: " << modelLoc << std::endl;
-
-
-    
-
+  
     // load and initialize the model
     dnn::tf::tfModelUser modelUser(modelLoc, 239, 1);
     
@@ -42,12 +39,7 @@ int main(int argc, char* argv[])
     std::vector<std::vector<float>> eventList= createVectorOfEventVectors();
     unsigned int sizeOfEventList = eventList.size();
     std::cout << "Size of eventList: " << sizeOfEventList << std::endl;
-
-
-    std::cout << "Begin test" << std::endl;
-    std::vector<float> returnVec = modelUser.evalModel(eventList[0]);
-    std::cout << "end test" << std::endl;
-    
+   
     // Evaluate model for events and compare with known output values
     std::vector<float> outputValuesReturnVec;
     for(unsigned int i = 0; i < sizeOfEventList; i++) {
@@ -57,8 +49,7 @@ int main(int argc, char* argv[])
         for (unsigned int j = 0; j < 1; j++) 
             std::cout << outputValuesReturnVec[j] << " ";
         std::cout << std::endl;
-    }
-    
+    } 
 }
 
 std::vector<std::vector<float>> createVectorOfEventVectors()

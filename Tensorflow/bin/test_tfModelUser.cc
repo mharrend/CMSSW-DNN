@@ -1,5 +1,5 @@
 /*
- * Test of loading a tensorflow model produced by NNFlow using the tfModelUser class
+ * Test of loading a multimodal tensorflow model produced by NNFlow using the tfModelUser class
  *
  * Usage:
  *   > test_tfModelUser
@@ -73,7 +73,8 @@ int main(int argc, char* argv[])
     
 
     // load and initialize the model
-    dnn::tf::tfModelUser modelUser(modelLoc, inputvariableList, outputLabelList);
+    //dnn::tf::tfModelUser modelUser(modelLoc, inputvariableList, outputLabelList);
+    dnn::tf::tfModelUser modelUser(modelLoc, 243, 4);
     
     // create vector list containing events 
     std::vector<std::vector<float>> eventList= createVectorOfEventVectors();
@@ -84,14 +85,6 @@ int main(int argc, char* argv[])
     std::vector<std::vector<float>> outputValuesList= createVectorOfOutputValues();
     unsigned int sizeOfOutputValuesList = outputValuesList.size();
     std::cout << "Size of outputValuesList: " << sizeOfOutputValuesList << std::endl;
-
-    std::cout << "Test eventList vector" << std::endl;
-    for (auto const& c : eventList[0])
-    	std::cout << c << ' ';
-
-    std::cout << "Begin test" << std::endl;
-    std::vector<float> returnVec = modelUser.evalModel(eventList[0]);
-    std::cout << "end test" << std::endl;
     
     // Evaluate model for events and compare with known output values
     std::vector<float> outputValuesReturnVec;
@@ -100,11 +93,11 @@ int main(int argc, char* argv[])
         outputValuesReturnVec = modelUser.evalModel(eventList[i]);
         std::cout << "Output values obtained from model:" << std::endl;
         for (unsigned int j = 0; j < outputLabelList.size(); j++) 
-            std::cout << outputValuesReturnVec[j];
+            std::cout << outputValuesReturnVec[j] << " ";
         std::cout << std::endl;
         std::cout << "Known output values for model:" << std::endl;
         for (unsigned int j = 0; j < outputLabelList.size(); j++) 
-            std::cout << outputValuesList[i][j];
+            std::cout << outputValuesList[i][j] << " ";
         std::cout << std::endl;
     }
     

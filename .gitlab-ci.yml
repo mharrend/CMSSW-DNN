@@ -27,3 +27,4 @@ test:
     - test_tfgraph
     - test_kitmodel
     - test_tfModelUser
+    - test_tfModelUser2

@@ -50,6 +50,9 @@ public:
     ~tfModelUser();
     
 private:
+    // init function to minimize constructors
+    void init(std::string modelFileLocation, unsigned int numberOfInputNeurons, unsigned int numberOfOutputNeurons);
+    
     // tensorflow graph
     dnn::tf::Graph* m_g;    
     // tensorflow x and y variables
