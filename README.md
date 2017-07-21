@@ -1,7 +1,8 @@
 ## DNN / Tensorflow Interface for CMSSW&nbsp;&nbsp;&nbsp;&nbsp;[![build status](https://gitlab.cern.ch/mrieger/CMSSW-DNN/badges/master/build.svg)](https://gitlab.cern.ch/mrieger/CMSSW-DNN/pipelines)
 
-- Main repository & issues: [gitlab.cern.ch/mrieger/CMSSW-DNN](https://gitlab.cern.ch/mrieger/CMSSW-DNN)
-- Code mirror: [github.com/riga/CMSSW-DNN](https://github.com/riga/CMSSW-DNN)
+- Forked from: [gitlab.cern.ch/mharrend/CMSSW-DNN](https://gitlab.cern.ch/mharrend/CMSSW-DNN)
+- Main repository & issues: [gitlab.cern.ch/mharrend/CMSSW-DNN](https://gitlab.cern.ch/mharrend/CMSSW-DNN)
+- Code mirror: [github.com/mharrend/CMSSW-DNN](https://github.com/mharrend/CMSSW-DNN)
 
 This project provides a simple yet fast interface to [Tensorflow](https://www.tensorflow.org) graphs and tensors which lets you evaluate trained models right within CMSSW. It **does not depend** on a converter library or custom NN implementation. By using the C-API's of both Python and NumPy (available via `/cvmfs`), you can essentially load and evaluate every model that was previously saved via [`tf.train.Saver.save()`](https://www.tensorflow.org/api_docs/python/tf/train/Saver#save).
 
