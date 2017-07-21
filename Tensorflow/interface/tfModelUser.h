@@ -43,7 +43,7 @@ public:
     tfModelUser(std::string modelFileLocation, unsigned int numberOfInputNeurons, unsigned int numberOfOutputNeurons);
     
     // Evaluate model after initialization took place in constructor
-    void evalModel(std::vector<float> eventVariables, std::vector<float> &NNOutput);
+    std::vector<float> evalModel(std::vector<float> eventVariables);
     
     // Destructor
     // Cleaning created Tensorflow tensors
@@ -57,7 +57,7 @@ private:
     dnn::tf::Tensor* m_y;
     
     // Storing number of output neurons since required during eval step
-    unsigned int m_numberOfOutputNeurons;
+    unsigned int m_numberOfOutputValues;
     
 };
 

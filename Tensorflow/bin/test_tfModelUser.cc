@@ -38,6 +38,12 @@ std::vector<std::string> readinNumberOfVariables(std::string variableListLocatio
         }
     }
     variableListFile.close();
+    // Remove last empyt entry
+    variableList.pop_back();
+
+    for(const auto &i: variableList)
+	std::cout << "VariableList: " << i << std::endl;
+
     return variableList;
 }
 
@@ -78,12 +84,20 @@ int main(int argc, char* argv[])
     std::vector<std::vector<float>> outputValuesList= createVectorOfOutputValues();
     unsigned int sizeOfOutputValuesList = outputValuesList.size();
     std::cout << "Size of outputValuesList: " << sizeOfOutputValuesList << std::endl;
+
+    std::cout << "Test eventList vector" << std::endl;
+    for (auto const& c : eventList[0])
+    	std::cout << c << ' ';
+
+    std::cout << "Begin test" << std::endl;
+    std::vector<float> returnVec = modelUser.evalModel(eventList[0]);
+    std::cout << "end test" << std::endl;
     
     // Evaluate model for events and compare with known output values
     std::vector<float> outputValuesReturnVec;
     for(unsigned int i = 0; i < sizeOfEventList; i++) {
         outputValuesReturnVec.clear();
-        modelUser.evalModel(eventList[i], outputValuesReturnVec);
+        outputValuesReturnVec = modelUser.evalModel(eventList[i]);
         std::cout << "Output values obtained from model:" << std::endl;
         for (unsigned int j = 0; j < outputLabelList.size(); j++) 
             std::cout << outputValuesReturnVec[j];
@@ -161,7 +175,7 @@ tempEventVec={ 1.28824432e+02,   6.78074829e+02,   6.16816320e-02,   3.34909964e
   -1.33861184e-01,  -1.37701899e-01,  -1.39818335e+00,   1.45862350e+02,
    1.04929382e+02,   6.37808800e+01,   5.51425285e+01,   5.20063171e+01,
    4.31481514e+01,   9.87608850e-01,   9.88287687e-01,   8.92324388e-01,
-   9.70717967e-01,   9.54866230e-01,   9.67990100e-01,   1.13673646e-04};
+   9.70717967e-01,   9.54866230e-01,   9.67990100e-01};
 eventsVec.push_back(tempEventVec);
 
 tempEventVec.clear();
@@ -225,7 +239,7 @@ tempEventVec={ 9.26560135e+01,   9.12297485e+02,   6.50671571e-02,   1.55338776e
    1.98536217e+00,   2.35318899e+00,  -2.41588756e-01,   3.54397980e+02,
    1.27555237e+02,   9.09191208e+01,   8.47513962e+01,   8.14567413e+01,
    5.41440659e+01,   9.82985854e-01,   9.84790504e-01,   9.87612724e-01,
-   9.93693769e-01,   9.73564386e-01,   9.77695644e-01,   1.62463622e-04};
+   9.93693769e-01,   9.73564386e-01,   9.77695644e-01};
 eventsVec.push_back(tempEventVec);
 
 tempEventVec.clear();
@@ -289,7 +303,7 @@ tempEventVec={ 3.57774200e+02,   7.68042786e+02,   9.19603482e-02,   3.41006255e
    7.87776649e-01,  -2.90479279e+00,  -1.01597703e+00,   2.33753616e+02,
    8.87918472e+01,   7.37111359e+01,   7.02486115e+01,   5.05322189e+01,
    3.87030792e+01,   9.97332335e-01,   9.90880072e-01,   9.84979630e-01,
-   9.92297649e-01,   9.81479943e-01,   9.67972279e-01,   1.95473844e-04};
+   9.92297649e-01,   9.81479943e-01,   9.67972279e-01};
 eventsVec.push_back(tempEventVec);
 
 return eventsVec;
