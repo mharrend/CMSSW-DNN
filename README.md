@@ -1,5 +1,6 @@
-## DNN / Tensorflow Interface for CMSSW&nbsp;&nbsp;&nbsp;&nbsp;[![build status](https://gitlab.cern.ch/mrieger/CMSSW-DNN/badges/master/build.svg)](https://gitlab.cern.ch/mrieger/CMSSW-DNN/pipelines)
+## DNN / Tensorflow Interface for CMSSW&nbsp;&nbsp;&nbsp;&nbsp;[![build status](https://gitlab.cern.ch/mharrend/CMSSW-DNN/badges/master/build.svg)](https://gitlab.cern.ch/mharrend/CMSSW-DNN/pipelines)
 
+- Original author: [Marcel Rieger](https://gitlab.cern.ch/mrieger)
 - Forked from: [gitlab.cern.ch/mharrend/CMSSW-DNN](https://gitlab.cern.ch/mharrend/CMSSW-DNN)
 - Main repository & issues: [gitlab.cern.ch/mharrend/CMSSW-DNN](https://gitlab.cern.ch/mharrend/CMSSW-DNN)
 - Code mirror: [github.com/mharrend/CMSSW-DNN](https://github.com/mharrend/CMSSW-DNN)
@@ -8,6 +9,8 @@ This project provides a simple yet fast interface to [Tensorflow](https://www.te
 
 Tensorflow is available starting from CMSSW 9.0.X ([PR](https://github.com/cms-sw/cmsdist/pull/2824)). The software bundle for CMSSW 8.0.X is provided by [M. Harrendorf](https://github.com/mharrend).
 
+##### Usage without CMSSW
+* This package can also be used with out CMSSW, but then you have to make sure that the tensorflow python package is installed on your machine.
 
 ##### Features in a nutshell
 
@@ -16,6 +19,8 @@ Tensorflow is available starting from CMSSW 9.0.X ([PR](https://github.com/cms-s
 - Evaluation with multiple input and output tensors.
 - Batching.
 - **GPU support**.
+- Easy way to make use of Tensorflow models obtained by training.
+- Possibility to use binary or multimodal neural networks.
 
 
 ##### Tensorflow C++ API
@@ -48,6 +53,24 @@ sess.run(tf.global_variables_initializer())
 saver = tf.train.Saver()
 saver.save(sess, "/path/to/simplegraph")
 ```
+
+##### Improved, new way to evaluate your model
+* Checkout the Tensorflow/bin/test_tfModelUser executable  and the DNN/Tensorflow/interface/tfModelUser.h class
+* One has only to provide 
+  * a Tensorflow model
+  * the number of input neurons or a list containing the input variables
+  * the number of output neurons or a list containing the output labels
+* Afterwards one can evaluate the model by handing over a list containing the input variables and the function will return a vector containing the values for the output labels.
+
+```cpp
+// load and initialize the model
+//dnn::tf::tfModelUser modelUser(modelLoc, inputvariableList, outputLabelList);  // alternative
+dnn::tf::tfModelUser modelUser(modelLoc, 243, 4);
+
+// Evaluate model event by event
+returnVectorContainingOutputVariables = modelUser.evalModel(vectorContainingInputVariables);
+```
+
 
 
 ##### Evaluate your Model (in CMSSW)
