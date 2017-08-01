@@ -73,8 +73,8 @@ int main(int argc, char* argv[])
     
 
     // load and initialize the model
-    //dnn::tf::tfModelUser modelUser(modelLoc, inputvariableList, outputLabelList);
-    dnn::tf::tfModelUser modelUser(modelLoc, 243, 4);
+    dnn::tf::tfModelUser modelUser(modelLoc, inputvariableList, outputLabelList);
+    //dnn::tf::tfModelUser modelUser(modelLoc, 243, 4);
     
     // create vector list containing events 
     std::vector<std::vector<float>> eventList= createVectorOfEventVectors();
