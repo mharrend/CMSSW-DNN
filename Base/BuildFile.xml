@@ -1,0 +1,5 @@
+<use name="Python" />
+<Flags CXXFLAGS="-g -O0" />
+<export>
+    <lib name="1" />
+</export>

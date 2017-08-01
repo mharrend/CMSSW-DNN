@@ -1,0 +1,30 @@
+stages:
+  - test
+
+before_script:
+  - export CI_HOME="$( pwd )"
+  - git submodule update --init --recursive
+  - export SCRAM_ARCH="slc6_amd64_gcc530"
+  - export CMSSW_VERSION="CMSSW_8_0_26_patch2"
+  - source /cvmfs/cms.cern.ch/cmsset_default.sh
+  - cd ..
+  - scramv1 project CMSSW $CMSSW_VERSION
+  - cd $CMSSW_VERSION/src
+  - eval `scramv1 runtime -sh`
+  - cd $CI_HOME
+
+test:
+  stage: test
+  tags:
+    - cvmfs
+    - docker
+  script:
+    - cd $CMSSW_BASE/src
+    - cp -r $CI_HOME DNN
+    - source DNN/setup.sh
+    - scram b || exit ${?}
+    - test_tftensor || exit ${?}
+    - test_tfgraph
+    - test_kitmodel
+    - test_tfModelUser
+    - test_tfModelUser2
