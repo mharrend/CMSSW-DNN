@@ -34,12 +34,12 @@ std::vector<std::string> readinNumberOfVariables(std::string variableListLocatio
     if (variableListFile.is_open()) {
         while (!variableListFile.eof()) {
             getline(variableListFile,tempVariable);
-            variableList.push_back(tempVariable);
+            // Only save variable if it is not an empty line or whitespace line
+            if (!tempVariable.empty() and tempVariable.find_first_not_of(" \t\n\v\f\r") != std::string::npos)
+                variableList.push_back(tempVariable);
         }
     }
     variableListFile.close();
-    // Remove last empyt entry
-    variableList.pop_back();
 
     for(const auto &i: variableList)
 	std::cout << "VariableList: " << i << std::endl;
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
     std::cout << "Will use the tfModelUser model: " << modelLoc << std::endl;
 
     // Read in input variable list
-    std::string inputvariableListLoc = dataDir + "/tfModelUserInputvariables.txt";
+    std::string inputvariableListLoc = dataDir + "/tfModelUserInputVariables.txt";
     std::cout << "Will use the tfModelUser input variable list: " << inputvariableListLoc << std::endl;
     std::vector<std::string> inputvariableList = readinNumberOfVariables(inputvariableListLoc);
     
