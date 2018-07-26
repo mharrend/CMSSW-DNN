@@ -1,4 +1,12 @@
-## DNN / Tensorflow Interface for CMSSW&nbsp;&nbsp;&nbsp;&nbsp;[![build status](https://gitlab.cern.ch/mharrend/CMSSW-DNN/badges/master/build.svg)](https://gitlab.cern.ch/mharrend/CMSSW-DNN/pipelines)
+# DNN / Tensorflow Interface for CMSSW&nbsp;&nbsp;&nbsp;&nbsp;[![build status](https://gitlab.cern.ch/mharrend/CMSSW-DNN/badges/master/build.svg)](https://gitlab.cern.ch/mharrend/CMSSW-DNN/pipelines)
+
+## Overview
+
+This repo was developed by the Aachen ttHbb analysis group to make use of neuronal networks trained by Tensorflow / and Keras in the CMSSW framework.
+NNs are trained in Tensorflow and then exported as snapshots. The NNs can then be used for an evaluation in CMSSW via C++ functions.
+
+The contents of this repo are slightly modified used to setup the ttbb and the ttH/ttZ/ttW analysis of the doktorarbeit-ttbb/ttbb repository.
+Therefore, this repo is only kept as a reference to the original version developed by Aachen and Marco A. Harrendorf.
 
 - Original author: [Marcel Rieger](https://gitlab.cern.ch/mrieger)
 - Forked from: [gitlab.cern.ch/mharrend/CMSSW-DNN](https://gitlab.cern.ch/mharrend/CMSSW-DNN)
